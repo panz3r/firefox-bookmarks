@@ -1,0 +1,97 @@
+{
+    "title": "Bookmarks Menu",
+    "id": 1,
+    "type": "text/x-moz-place-container",
+    "root": "bookmarksMenuFolder",
+    "children": [
+        {
+            "title": "Development",
+            "id": 2,
+            "type": "text/x-moz-place-container",
+            "children": [
+                {
+                    "title": "GitHub",
+                    "id": 3,
+                    "type": "text/x-moz-place",
+                    "uri": "https://github.com",
+                    "dateAdded": 1639123456789000,
+                    "lastModified": 1639123456789000
+                },
+                {
+                    "title": "Stack Overflow",
+                    "id": 4,
+                    "type": "text/x-moz-place",
+                    "uri": "https://stackoverflow.com",
+                    "dateAdded": 1639123456789000,
+                    "lastModified": 1639123456789000
+                },
+                {
+                    "title": "Repositories",
+                    "id": 8,
+                    "type": "text/x-moz-place-container",
+                    "children": [
+                        {
+                            "title": "json2html-bookmarks - GitHub",
+                            "id": 9,
+                            "type": "text/x-moz-place",
+                            "uri": "https://github.com/andreax79/json2html-bookmarks",
+                            "dateAdded": 1639123456789000,
+                            "lastModified": 1639123456789000
+                        },
+                        {
+                            "title": "jsonlz4_to_json - GitHub",
+                            "id": 10,
+                            "type": "text/x-moz-place",
+                            "uri": " https://github.com/Robotvasya/jsonlz4_to_json",
+                            "dateAdded": 1639123456789000,
+                            "lastModified": 1639123456789000
+                        },
+                        {
+                            "title": "firefox-bookmarks - GitHub",
+                            "id": 11,
+                            "type": "text/x-moz-place",
+                            "uri": "https://github.com/panz3r/firefox-bookmarks",
+                            "dateAdded": 1639123456789000,
+                            "lastModified": 1639123456789000
+                        }
+                    ]
+                }
+            ],
+            "dateAdded": 1639123456789000,
+            "lastModified": 1639123456789000
+        },
+        {
+            "title": "News",
+            "id": 5,
+            "type": "text/x-moz-place-container",
+            "children": [
+                {
+                    "title": "BBC News",
+                    "id": 6,
+                    "type": "text/x-moz-place",
+                    "uri": "https://www.bbc.com/news",
+                    "dateAdded": 1639123456789000,
+                    "lastModified": 1639123456789000
+                }
+            ],
+            "dateAdded": 1639123456789000,
+            "lastModified": 1639123456789000
+        },
+        {
+            "title": "Example Bookmark",
+            "id": 7,
+            "type": "text/x-moz-place",
+            "uri": "https://example.com",
+            "dateAdded": 1639123456789000,
+            "lastModified": 1639123456789000,
+            "annos": [
+                {
+                    "name": "bookmarkProperties/description",
+                    "value": "This is an example bookmark with a description"
+                }
+            ]
+        }
+    ],
+    "dateAdded": 1639123456789000,
+    "lastModified": 1639123456789000
+}

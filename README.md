@@ -81,6 +81,24 @@ The script generates HTML files in the standard Netscape bookmark format, which 
 - Edge
 - Opera
 
+## Example
+
+For a complete demonstration of the script's capabilities, you can run the included example:
+
+```bash
+chmod +x example/example_usage.sh
+
+./example/example_usage.sh
+```
+
+This example script will:
+- Check for required dependencies and install them if needed
+- Show various usage examples with explanations
+- Run a test conversion using the included sample bookmark file
+- Generate a test HTML output file that you can examine or import into your browser
+
+The example script also serves as a reference for different ways to use the converter in your own workflows.
+
 ## How it works
 
 1. **File Detection**: The script automatically detects whether the input is a compressed `.jsonlz4` file or a regular JSON file
