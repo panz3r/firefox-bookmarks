@@ -1,0 +1,25 @@
+# This is a CODEOWNERS file that defines individuals or teams responsible for code in this repository
+# Each line is a file pattern followed by one or more owners
+# Order is important; the last matching pattern takes precedence
+# For more information, see: https://docs.github.com/en/repositories/managing-your-codebase-on-github/about-code-owners
+
+# These owners will be the default owners for everything in the repo
+*       @panz3r
+
+# Go code owners
+*.go    @panz3r
+
+# Python code owners
+/python/    @panz3r
+
+# Build scripts
+*.sh    @panz3r
+build.sh    @panz3r
+benchmark.sh    @panz3r
+
+# Documentation
+*.md    @panz3r
+LICENSE    @panz3r
+
+# GitHub specific files
+/.github/    @panz3r
