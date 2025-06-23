@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"html"
 	"io"
-	"math"
 	"strings"
 )
 
@@ -46,7 +45,9 @@ func (hc *HTMLConverter) convertFirefoxTimestamp(timestamp int64) string {
 	if timestamp == 0 {
 		return ""
 	}
-	return fmt.Sprintf("%d", int64(math.Floor(float64(timestamp)/1000000)))
+
+	// Convert Firefox timestamp to seconds
+	return fmt.Sprintf("%d", timestamp/1_000_000)
 }
 
 // formatDateAttributes formats date attributes for HTML bookmark tags
