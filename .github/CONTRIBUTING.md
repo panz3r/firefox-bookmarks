@@ -12,10 +12,16 @@ Thank you for your interest in contributing to Firefox Bookmarks Converter! Here
 
 ```bash
 # Build the application
-go build -o firefox-bookmarks
+make build
 
 # Run tests
-go test ./...
+make test
+
+# Build for all platforms
+make build-all
+
+# Run performance benchmarks
+make benchmark
 ```
 
 ## Pull Requests

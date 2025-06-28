@@ -25,10 +25,40 @@ git clone git@github.com:panz3r/firefox-bookmarks.git
 
 cd firefox-bookmarks
 
-go build -o firefox-bookmarks
+# Build for current platform
+make build
 
-# Or use the build script for all platforms
-./build.sh
+# Or build for all platforms
+make build-all
+```
+
+### Available Make Commands
+
+```bash
+# See all available commands
+make help
+
+# Development workflow
+make dev          # Full development setup (deps + build + test)
+make quick        # Quick build and test
+
+# Building
+make build        # Build for current platform
+make build-all    # Build for all platforms
+
+# Testing
+make test         # Run all tests
+make test-cover   # Run tests with coverage
+make benchmark    # Performance comparison vs Python version
+
+# Examples
+make example      # Run example demonstration
+make run-example  # Quick test with sample file
+
+# Utilities
+make clean        # Clean build artifacts
+make format       # Format code
+make info         # Show project information
 ```
 
 ## 🚀 Usage
@@ -91,7 +121,7 @@ Generates HTML files in the standard Netscape bookmark format, compatible with:
 Run the included demonstration:
 
 ```bash
-./example/example_usage.sh
+make example
 ```
 
 This will:
@@ -112,7 +142,7 @@ This will:
 ### Binary not found or won't run
 - Download the correct binary for your platform from `builds/`
 - Make sure the binary has execute permissions: `chmod +x firefox-bookmarks`
-- Build from source if needed: `go build -o firefox-bookmarks`
+- Build from source if needed: `make build`
 
 ### "not a valid Firefox bookmark backup file"
 Ensure you're using a valid Firefox bookmark backup file from:
