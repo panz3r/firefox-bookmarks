@@ -12,14 +12,13 @@
 # Python code owners
 /python/    @panz3r
 
-# Build scripts
-*.sh    @panz3r
-build.sh    @panz3r
-benchmark.sh    @panz3r
+# Build scripts and Makefile
+*.sh        @panz3r
+Makefile     @panz3r
 
 # Documentation
-*.md    @panz3r
-LICENSE    @panz3r
+*.md        @panz3r
+LICENSE     @panz3r
 
 # GitHub specific files
-/.github/    @panz3r
+/.github/   @panz3r

@@ -16,7 +16,32 @@ A fast, dependency-free tool that converts Firefox bookmark backup files directl
 
 ### Pre-built Binaries (Recommended)
 
-**[TBD]**
+Download the latest pre-built binary for your platform from the [releases page](https://github.com/panz3r/firefox-bookmarks/releases).
+
+#### Linux/macOS
+```bash
+# Download and install (replace $VERSION with the latest version)
+curl -L -o firefox-bookmarks "https://github.com/panz3r/firefox-bookmarks/releases/download/v$VERSION/firefox-bookmarks-linux-amd64"
+
+# Make executable
+chmod +x firefox-bookmarks
+
+# Move to PATH (optional)
+sudo mv firefox-bookmarks /usr/local/bin/
+```
+
+#### Windows
+1. Download `firefox-bookmarks-windows-amd64.exe` from the [releases page](https://github.com/panz3r/firefox-bookmarks/releases)
+2. Rename to `firefox-bookmarks.exe` (optional)
+3. Place in a directory in your PATH, or run directly
+
+#### Platform-specific downloads:
+- **Linux AMD64**: `firefox-bookmarks-linux-amd64`
+- **Linux ARM64**: `firefox-bookmarks-linux-arm64`
+- **macOS AMD64**: `firefox-bookmarks-darwin-amd64`
+- **macOS ARM64**: `firefox-bookmarks-darwin-arm64` (Apple Silicon)
+- **Windows AMD64**: `firefox-bookmarks-windows-amd64.exe`
+- **Windows ARM64**: `firefox-bookmarks-windows-arm64.exe`
 
 ### Build from Source
 ```bash
@@ -25,10 +50,40 @@ git clone git@github.com:panz3r/firefox-bookmarks.git
 
 cd firefox-bookmarks
 
-go build -o ff_bookmarks
+# Build for current platform
+make build
 
-# Or use the build script for all platforms
-./build.sh
+# Or build for all platforms
+make build-all
+```
+
+### Available Make Commands
+
+```bash
+# See all available commands
+make help
+
+# Development workflow
+make dev          # Full development setup (deps + build + test)
+make quick        # Quick build and test
+
+# Building
+make build        # Build for current platform
+make build-all    # Build for all platforms
+
+# Testing
+make test         # Run all tests
+make test-cover   # Run tests with coverage
+make benchmark    # Performance comparison vs Python version
+
+# Examples
+make example      # Run example demonstration
+make run-example  # Quick test with sample file
+
+# Utilities
+make clean        # Clean build artifacts
+make format       # Format code
+make info         # Show project information
 ```
 
 ## 🚀 Usage
@@ -37,16 +92,16 @@ go build -o ff_bookmarks
 
 ```bash
 # Show help
-./ff_bookmarks -help
+./firefox-bookmarks -help
 
 # Convert with auto-generated output filename
-./ff_bookmarks backup.jsonlz4
+./firefox-bookmarks backup.jsonlz4
 
 # Convert with custom output filename
-./ff_bookmarks -o my_bookmarks.html backup.jsonlz4
+./firefox-bookmarks -o my_bookmarks.html backup.jsonlz4
 
 # Convert JSON bookmark file
-./ff_bookmarks -o bookmarks.html bookmarks.json
+./firefox-bookmarks -o bookmarks.html bookmarks.json
 ```
 
 **Note**: Flags must come before the input file.
@@ -91,7 +146,7 @@ Generates HTML files in the standard Netscape bookmark format, compatible with:
 Run the included demonstration:
 
 ```bash
-./example/example_usage.sh
+make example
 ```
 
 This will:
@@ -111,8 +166,8 @@ This will:
 
 ### Binary not found or won't run
 - Download the correct binary for your platform from `builds/`
-- Make sure the binary has execute permissions: `chmod +x ff_bookmarks`
-- Build from source if needed: `go build -o ff_bookmarks`
+- Make sure the binary has execute permissions: `chmod +x firefox-bookmarks`
+- Build from source if needed: `make build`
 
 ### "not a valid Firefox bookmark backup file"
 Ensure you're using a valid Firefox bookmark backup file from:

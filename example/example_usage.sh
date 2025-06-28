@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Example usage script for ff_bookmarks (Go version)
+# Example usage script for firefox-bookmarks (Go version)
 # This script demonstrates how to use the Firefox bookmarks converter
 
 echo "Firefox Bookmarks to HTML Converter - Example Usage (Go Version)"
@@ -8,7 +8,7 @@ echo "=================================================================="
 echo
 
 # Check if the Go binary exists
-if [ ! -f "ff_bookmarks" ]; then
+if [ ! -f "firefox-bookmarks" ]; then
     echo "Go binary not found. Building from source..."
     cd ..
     if [ ! -f "main.go" ]; then
@@ -17,7 +17,7 @@ if [ ! -f "ff_bookmarks" ]; then
     fi
     
     echo "Building Go binary..."
-    go build -o ff_bookmarks
+    go build -o firefox-bookmarks
     if [ $? -ne 0 ]; then
         echo "Error: Failed to build Go binary"
         exit 1
@@ -30,25 +30,25 @@ fi
 echo "Usage examples:"
 echo
 echo "1. Convert a Firefox jsonlz4 backup file:"
-echo "   ff_bookmarks ~/.mozilla/firefox/[profile]/bookmarkbackups/bookmarks-2025-06-11_123456_randomhash.jsonlz4"
+echo "   firefox-bookmarks ~/.mozilla/firefox/[profile]/bookmarkbackups/bookmarks-2025-06-11_123456_randomhash.jsonlz4"
 echo
 echo "2. Convert with custom output filename:"
-echo "   ff_bookmarks -o my_bookmarks.html backup.jsonlz4"
+echo "   firefox-bookmarks -o my_bookmarks.html backup.jsonlz4"
 echo
 echo "3. Convert a JSON bookmark file:"
-echo "   ff_bookmarks bookmarks.json"
+echo "   firefox-bookmarks bookmarks.json"
 echo
 echo "4. Show help:"
-echo "   ff_bookmarks -help"
+echo "   firefox-bookmarks -help"
 echo
 echo "Note: In Go version, flags must come before the input file."
 echo
 
 if [ -f "example/test_bookmarks.json" ]; then
     echo "Running test with the included sample file..."
-    echo "Command: ff_bookmarks -o example/output.html example/test_bookmarks.json"
+    echo "Command: firefox-bookmarks -o example/output.html example/test_bookmarks.json"
     
-    ./ff_bookmarks -o example/output.html example/test_bookmarks.json
+    ./firefox-bookmarks -o example/output.html example/test_bookmarks.json
     if [ $? -eq 0 ]; then
         echo "✓ Test completed successfully!"
         echo "✓ Generated: example/output.html"
@@ -57,7 +57,7 @@ if [ -f "example/test_bookmarks.json" ]; then
         echo
         echo "Performance info:"
         echo "- Go version: Single binary, no dependencies"
-        echo "- Binary size: $(du -h ff_bookmarks | cut -f1)"
+        echo "- Binary size: $(du -h firefox-bookmarks | cut -f1)"
         echo "- Execution time: Fast startup (~5-10ms)"
     else
         echo "✗ Test failed"
