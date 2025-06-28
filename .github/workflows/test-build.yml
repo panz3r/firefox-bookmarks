@@ -25,10 +25,10 @@ jobs:
           check-latest: true
 
       - name: Get dependencies
-        run: go mod download
+        run: make install-deps
 
-      - name: Run tests
-        run: go test -v ./...
+      - name: Run checks (test and vet)
+        run: make check
 
   build:
     name: Build
@@ -46,10 +46,10 @@ jobs:
           check-latest: true
 
       - name: Get dependencies
-        run: go mod download
+        run: make install-deps
 
       - name: Build
-        run: go build -v ./...
+        run: make build
 
   build-all-platforms:
     name: Build for all platforms
@@ -69,8 +69,8 @@ jobs:
           go-version-file: 'go.mod'
           check-latest: true
 
-      - name: Run build script
-        run: chmod +x ./build.sh && ./build.sh
+      - name: Build all platforms
+        run: make build-all
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
