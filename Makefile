@@ -122,7 +122,7 @@ benchmark: build deps-python ## Compare Go vs Python performance
 # Example and demo commands
 example: build ## Run the example usage demonstration
 	@echo "Running example usage demonstration..."
-	@cd example && ./example_usage.sh
+	@./example/example_usage.sh
 
 run-example: build ## Run converter with the test file
 	@echo "Running converter with test file..."
