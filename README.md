@@ -16,7 +16,32 @@ A fast, dependency-free tool that converts Firefox bookmark backup files directl
 
 ### Pre-built Binaries (Recommended)
 
-**[TBD]**
+Download the latest pre-built binary for your platform from the [releases page](https://github.com/panz3r/firefox-bookmarks/releases).
+
+#### Linux/macOS
+```bash
+# Download and install (replace $VERSION with the latest version)
+curl -L -o firefox-bookmarks "https://github.com/panz3r/firefox-bookmarks/releases/download/v$VERSION/firefox-bookmarks-linux-amd64"
+
+# Make executable
+chmod +x firefox-bookmarks
+
+# Move to PATH (optional)
+sudo mv firefox-bookmarks /usr/local/bin/
+```
+
+#### Windows
+1. Download `firefox-bookmarks-windows-amd64.exe` from the [releases page](https://github.com/panz3r/firefox-bookmarks/releases)
+2. Rename to `firefox-bookmarks.exe` (optional)
+3. Place in a directory in your PATH, or run directly
+
+#### Platform-specific downloads:
+- **Linux AMD64**: `firefox-bookmarks-linux-amd64`
+- **Linux ARM64**: `firefox-bookmarks-linux-arm64`
+- **macOS AMD64**: `firefox-bookmarks-darwin-amd64`
+- **macOS ARM64**: `firefox-bookmarks-darwin-arm64` (Apple Silicon)
+- **Windows AMD64**: `firefox-bookmarks-windows-amd64.exe`
+- **Windows ARM64**: `firefox-bookmarks-windows-arm64.exe`
 
 ### Build from Source
 ```bash
