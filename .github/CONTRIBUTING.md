@@ -12,7 +12,7 @@ Thank you for your interest in contributing to Firefox Bookmarks Converter! Here
 
 ```bash
 # Build the application
-go build -o ff_bookmarks
+go build -o firefox-bookmarks
 
 # Run tests
 go test ./...

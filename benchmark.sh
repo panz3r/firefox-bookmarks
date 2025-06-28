@@ -31,12 +31,12 @@ echo
 
 # Test Go version  
 echo "Go version:"
-if [ -f "ff_bookmarks" ]; then
-    time ./ff_bookmarks -o test_go_perf.html "$INPUT_FILE"
+if [ -f "firefox-bookmarks" ]; then
+    time ./firefox-bookmarks -o test_go_perf.html "$INPUT_FILE"
     GO_SIZE=$(du -h test_go_perf.html | cut -f1)
     echo "Output size: $GO_SIZE"
 else
-    echo "Go version (ff_bookmarks) not found - run 'go build' first"
+    echo "Go version (firefox-bookmarks) not found - run 'go build' first"
 fi
 
 echo
@@ -56,8 +56,8 @@ fi
 
 echo
 echo "Binary sizes:"
-if [ -f "ff_bookmarks" ]; then
-    echo "Go binary: $(du -h ff_bookmarks | cut -f1)"
+if [ -f "firefox-bookmarks" ]; then
+    echo "Go binary: $(du -h firefox-bookmarks | cut -f1)"
 fi
 
 echo "Python script: $(du -h python/ff_bookmarks.py | cut -f1)"

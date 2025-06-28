@@ -17,7 +17,7 @@ func TestMain_WithExampleFile(t *testing.T) {
 	defer func() { os.Args = oldArgs }()
 
 	exampleFile := "example/test_bookmarks.json"
-	os.Args = []string{"ff_bookmarks", "-o", outputFile, exampleFile}
+	os.Args = []string{"firefox-bookmarks", "-o", outputFile, exampleFile}
 
 	// Run main (this will panic if there's an issue, which will fail the test)
 	main()
@@ -57,7 +57,7 @@ func TestMain_NoArguments(t *testing.T) {
 	oldArgs := os.Args
 	defer func() { os.Args = oldArgs }()
 
-	os.Args = []string{"ff_bookmarks"}
+	os.Args = []string{"firefox-bookmarks"}
 
 	// This should cause main to exit with status 1, but since we can't easily
 	// catch os.Exit in tests, we'll just check that it doesn't panic

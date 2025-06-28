@@ -14,15 +14,15 @@ import (
 // printUsage prints the usage information
 func printUsage() {
 	fmt.Printf(`
-ff_bookmarks [-o OUTPUT_FILE] input_file
+firefox-bookmarks [-o OUTPUT_FILE] input_file
 
 Converts Firefox bookmark backup files to HTML format.
 Supports both .jsonlz4 (compressed backup) and .json (uncompressed) input files.
 
 Examples:
-    ff_bookmarks bookmarks-2025-06-11.jsonlz4
-    ff_bookmarks -o my_bookmarks.html bookmarks-2025-06-11.jsonlz4  
-    ff_bookmarks -o bookmarks.html bookmarks.json
+    firefox-bookmarks bookmarks-2025-06-11.jsonlz4
+    firefox-bookmarks -o my_bookmarks.html bookmarks-2025-06-11.jsonlz4  
+    firefox-bookmarks -o bookmarks.html bookmarks.json
 
 Options:
 `)

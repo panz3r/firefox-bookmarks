@@ -25,7 +25,7 @@ git clone git@github.com:panz3r/firefox-bookmarks.git
 
 cd firefox-bookmarks
 
-go build -o ff_bookmarks
+go build -o firefox-bookmarks
 
 # Or use the build script for all platforms
 ./build.sh
@@ -37,16 +37,16 @@ go build -o ff_bookmarks
 
 ```bash
 # Show help
-./ff_bookmarks -help
+./firefox-bookmarks -help
 
 # Convert with auto-generated output filename
-./ff_bookmarks backup.jsonlz4
+./firefox-bookmarks backup.jsonlz4
 
 # Convert with custom output filename
-./ff_bookmarks -o my_bookmarks.html backup.jsonlz4
+./firefox-bookmarks -o my_bookmarks.html backup.jsonlz4
 
 # Convert JSON bookmark file
-./ff_bookmarks -o bookmarks.html bookmarks.json
+./firefox-bookmarks -o bookmarks.html bookmarks.json
 ```
 
 **Note**: Flags must come before the input file.
@@ -111,8 +111,8 @@ This will:
 
 ### Binary not found or won't run
 - Download the correct binary for your platform from `builds/`
-- Make sure the binary has execute permissions: `chmod +x ff_bookmarks`
-- Build from source if needed: `go build -o ff_bookmarks`
+- Make sure the binary has execute permissions: `chmod +x firefox-bookmarks`
+- Build from source if needed: `go build -o firefox-bookmarks`
 
 ### "not a valid Firefox bookmark backup file"
 Ensure you're using a valid Firefox bookmark backup file from:

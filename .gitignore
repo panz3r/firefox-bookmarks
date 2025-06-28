@@ -219,7 +219,7 @@ $RECYCLE.BIN/
 
 # Project-specific
 builds/
-ff_bookmarks
+firefox-bookmarks
 
 # Test files
 test_*.html
