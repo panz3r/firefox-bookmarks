@@ -167,7 +167,8 @@ vet: ## Run go vet
 check: test vet ## Run all checks (tests + vet)
 	@echo "✓ All checks passed"
 
-release-build: clean build-all ## Clean build for release
+release-build: clean ## Clean build for release
+	$(MAKE) build-all
 	@echo "✓ Release build complete"
 
 # Development helpers
