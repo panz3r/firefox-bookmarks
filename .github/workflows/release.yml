@@ -1,49 +1,71 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - 'v*' # Run when tag matches v*, i.e. v1.0.0, v20.15.10
+  schedule:
+    - cron: "0 17 * * 2" # Weekly on Tuesday evenings
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Compute the next version and release notes without publishing
+        type: boolean
+        default: false
 
 permissions:
-  contents: write # Needed to create releases
+  contents: read
+
+concurrency:
+  group: release
 
 jobs:
-  build:
-    name: Build and Release
+  release:
+    name: Release
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0 # Fetch all tags
+          fetch-depth: 0
+
+      - name: Generate release notes
+        id: notes
+        uses: orhun/git-cliff-action@a9a95522b26fe6403f7bb24031f21fb573d0f5ff # v4.9.1
+        with:
+          args: --unreleased --bump --strip all --output ${{ runner.temp }}/RELEASE_NOTES.md
+
+      # git-cliff reports the latest tag as the next version when nothing is releasable
+      - name: Check for releasable changes
+        id: check
+        env:
+          NOTES: ${{ runner.temp }}/RELEASE_NOTES.md
+          VERSION: ${{ steps.notes.outputs.version }}
+        run: |
+          if ! grep -q '[^[:space:]]' "$NOTES" || git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
+            echo "No releasable changes since the last release"
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            { echo "## $VERSION"; echo; cat "$NOTES"; } >> "$GITHUB_STEP_SUMMARY"
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Set up Go
+        if: steps.check.outputs.release == 'true'
         uses: actions/setup-go@v7
         with:
           go-version-file: 'go.mod'
           check-latest: true
 
-      - name: Get version from tag
-        id: get_version
-        run: echo "APP_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
-
-      - name: Build all platforms for release
+      - name: Build release binaries
+        if: steps.check.outputs.release == 'true'
         run: make release-build
 
-      - name: Create release
-        id: create_release
-        uses: softprops/action-gh-release@v3
-        with:
-          name: v${{ env.APP_VERSION }}
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-          files: |
-            builds/firefox-bookmarks_linux_amd64
-            builds/firefox-bookmarks_linux_arm64
-            builds/firefox-bookmarks_macos_arm64
-            builds/firefox-bookmarks_macos_intel
-            builds/firefox-bookmarks_windows_amd64.exe
-            builds/firefox-bookmarks_windows_arm64.exe
+      - name: Create GitHub release
+        if: steps.check.outputs.release == 'true' && !inputs.dry-run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NOTES: ${{ runner.temp }}/RELEASE_NOTES.md
+          VERSION: ${{ steps.notes.outputs.version }}
+        run: gh release create "$VERSION" --target "$GITHUB_SHA" --title "$VERSION" --notes-file "$NOTES" builds/*
