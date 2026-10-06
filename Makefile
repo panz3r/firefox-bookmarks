@@ -1,6 +1,8 @@
 # Firefox Bookmarks Converter - Makefile
 # This Makefile contains all useful commands for building, testing, and managing the project
 
+GOFLAGS ?= -buildvcs=false
+
 .PHONY: help build build-all test test-cover test-integration benchmark clean install-deps example run-example deps-python
 
 # Default target
@@ -18,24 +20,24 @@ help: ## Show this help message
 # Build commands
 build: ## Build binary for current platform
 	@echo "Building Firefox Bookmarks Converter for current platform..."
-	go build -ldflags "-s -w" -o firefox-bookmarks
+	GOFLAGS="$(GOFLAGS)" go build -ldflags "-s -w" -o firefox-bookmarks
 	@echo "✓ Build complete: firefox-bookmarks"
 
 build-all: ## Build binaries for all platforms
 	@echo "Building Firefox Bookmarks Converter for multiple platforms..."
 	@mkdir -p builds
 	@echo "Building for Windows (amd64)..."
-	GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_windows_amd64.exe
+	GOFLAGS="$(GOFLAGS)" GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_windows_amd64.exe
 	@echo "Building for Windows (arm64)..."
-	GOOS=windows GOARCH=arm64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_windows_arm64.exe
+	GOFLAGS="$(GOFLAGS)" GOOS=windows GOARCH=arm64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_windows_arm64.exe
 	@echo "Building for macOS (Intel)..."
-	GOOS=darwin GOARCH=amd64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_macos_intel
+	GOFLAGS="$(GOFLAGS)" GOOS=darwin GOARCH=amd64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_macos_intel
 	@echo "Building for macOS (Apple Silicon)..."
-	GOOS=darwin GOARCH=arm64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_macos_arm64
+	GOFLAGS="$(GOFLAGS)" GOOS=darwin GOARCH=arm64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_macos_arm64
 	@echo "Building for Linux (amd64)..."
-	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_linux_amd64
+	GOFLAGS="$(GOFLAGS)" GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_linux_amd64
 	@echo "Building for Linux (arm64)..."
-	GOOS=linux GOARCH=arm64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_linux_arm64
+	GOFLAGS="$(GOFLAGS)" GOOS=linux GOARCH=arm64 go build -ldflags "-s -w" -o builds/firefox-bookmarks_linux_arm64
 	@echo ""
 	@echo "✓ Build complete! Binaries created:"
 	@ls -l builds/
@@ -165,7 +167,8 @@ vet: ## Run go vet
 check: test vet ## Run all checks (tests + vet)
 	@echo "✓ All checks passed"
 
-release-build: clean build-all ## Clean build for release
+release-build: clean ## Clean build for release
+	$(MAKE) build-all
 	@echo "✓ Release build complete"
 
 # Development helpers
